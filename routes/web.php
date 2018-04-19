@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DashboardController@index');
+
+Route::get('/package-list', 'PackageController@packageList');
+Route::get('/add-package', 'PackageController@packageForm');
