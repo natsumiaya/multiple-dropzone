@@ -1045,16 +1045,13 @@ h2 {
 .accordion .panel {
     margin-bottom: 5px;
     border-radius: 0;
-    border-bottom: 1px solid #efefef
+    border-bottom: 1px solid #efefef;
 }
 .accordion .panel-heading {
     background: #F2F5F7;
     padding: 13px;
     width: 100%;
     display: block
-}
-.accordion .panel:hover {
-    background: #F2F5F7
 }
 .x_panel {
     position: relative;
@@ -4163,8 +4160,8 @@ ul.notifications {
 }
 .dropzone {
     min-height: 300px;
-    border: 1px solid #e5e5e5;
     margin: 10px;
+    padding: 0px !important;
 }
 
 /*
@@ -4298,4 +4295,11 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 .table-cell i {
     font-size: 300%;
     margin-bottom: 3%; 
+}
+.panel-body {
+    padding: 0px;
+}
+
+.float-right{
+    float: right;
 }
