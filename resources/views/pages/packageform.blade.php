@@ -17,6 +17,20 @@
         <br />
         <form action="{{ url('sendPackageinfo') }}" id="" class="form-horizontal form-label-left">
           <div class="form-group">
+            <label class="control-label col-md-12 col-sm-12 col-xs-12" for="Intended-recipient">Received at:
+            </label>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <input type="text" id="received-time" class="form-control col-md-7 col-xs-12" disabled="disabled" value= "{{ date('d-m-Y H:i:s') }}" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-12 col-sm-12 col-xs-12" for="Intended-recipient">Receiver:
+            </label>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="Username" disabled="disabled">
+            </div>
+          </div>
+          <div class="form-group">
             <label class="control-label col-md-12 col-sm-12 col-xs-12" for="Intended-recipient">Intended Recipient <span class="required red">*</span>
             </label>
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -32,19 +46,32 @@
 	            <div id="collapse0" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading0">
 	              <div class="panel-body">
 		  	          <div class="form-group">
-			            <label class="control-label col-md-12 col-sm-12 col-xs-12" for="Shipping-company">Shipping Company <span class="required red">*</span>
+			            <label class="control-label col-md-12 col-sm-12 col-xs-12" for="Shipping-company">Shipping Company: <span class="required red">*</span>
 			            </label>
 			            <div class="col-md-12 col-sm-12 col-xs-12">
 			            	<div class="radio">
 				                <label>
-				                  <input type="radio" checked="" value="option1" id="" name="optionsRadios"> Option one. only select one option
+				                  <input type="radio" checked="" value="option1" id="" name="optionsRadios"> UPS
 				                </label>
 			              	</div>
 							<div class="radio">
 							<label>
-							  <input type="radio" value="" id="" name="optionsRadios"> Option two. only select one option
+							  <input type="radio" value="" id="" name="optionsRadios"> FedEx
 							</label>
-							</div>  
+							</div>
+							<div class="radio">
+							<label>
+							  <input type="radio" value="" id="" name="optionsRadios"> USPS
+							</label>
+							</div>
+							<div class="radio">
+							<label>
+							  <input type="radio" value="" id="otherradio" name="optionsRadios"> Other 
+							  <div class="reveal-if-active">
+							  	<input type="text" id="Othershipping" class="form-control col-md-7 col-xs-12">
+							  </div>
+							</label>
+							</div>    
 						</div>
 			          </div>
 			          <div class="form-group">
@@ -81,6 +108,11 @@
 <script src="{{URL::asset('js/dropzone.min.js')}}"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+	$('#otherradio'). on('checked', function(){
+		console.log("hello");
+		$('#Othershipping').removeClass("show");
+	};
+	var DefaultMessage = '<div id="uploadTrigger" class="col-md-12 col-sm-12 col-xs-12"> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview1"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview2"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview3"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview4"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> </div>';
 	Dropzone.autoDiscover = false;
 	var counter = 1;
 	$('.firstpanel').hide();
@@ -91,7 +123,7 @@ $(document).ready(function () {
 	    uploadMultiple: true,
 	    acceptedFiles: 'image/*',
 	    addRemoveLinks: true,
-	    dictDefaultMessage: '<div id="uploadTrigger" class="col-md-12 col-sm-12 col-xs-12"> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview1"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview2"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview3"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview4"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> </div>',
+	    dictDefaultMessage: DefaultMessage,
 	    init: function() {
 	        dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
 
@@ -117,7 +149,6 @@ $(document).ready(function () {
 		package = counter + 1;
 		var html = '<div class="panel"> <a class="panel-heading" role="tab" id="heading'+counter+'" data-toggle="collapse" data-parent="#accordion" href="#collapse'+counter+'" aria-expanded="true" aria-controls="collapse0"> <h4 class="panel-title">Package #'+package+'</h4> </a> <div id="collapse'+counter+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+counter+'"> <div class="panel-body"> <div class="form-group"> <label class="control-label col-md-12 col-sm-12 col-xs-12" for="Shipping-company">Shipping Company <span class="required red">*</span> </label> <div class="col-md-12 col-sm-12 col-xs-12"> <div class="radio"> <label> <input type="radio" checked="" value="option1" id="" name="optionsRadios"> Option one. only select one option </label> </div> <div class="radio"> <label> <input type="radio" value="" id="" name="optionsRadios"> Option two. only select one option </label> </div> </div> </div> <div class="form-group"> <label class="control-label col-md-12 col-sm-12 col-xs-12" for="Intended-recipient">Upload Photos<span class="required red">*</span> </label> <div id="dropzoneForm'+counter+'" class="dropzone"></div> </div> <div class="form-group"> <label class="control-label col-md-12 col-sm-12 col-xs-12" for="Intended-recipient">Note: </label> <textarea id="message" class="form-control col-md-12 col-sm-12 col-xs-12" name="message"></textarea> </div> </div> </div> </div>';
 		$("#endform-pckg").before(html);
-		$(".firstpanel").show();
 		$('#collapse' + closeTab).slideUp("slow", function(){
 			$(this).toggleClass("in");	
 		});
@@ -127,7 +158,7 @@ $(document).ready(function () {
 		    uploadMultiple: true,
 		    acceptedFiles: 'image/*',
 		    addRemoveLinks: true,
-		    dictDefaultMessage: '<div id="uploadTrigger" class="col-md-12 col-sm-12 col-xs-12"> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview1"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview2"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview3"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> <div class="pictureblock"> <div class="block-content"> <div class="table"> <div class="table-cell dzpreview4"> <i class="fas fa-camera"></i> <p>Upload Image</p> </div> </div> </div> </div> </div>',
+		    dictDefaultMessage: DefaultMessage,
 		    init: function() {
 		        dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
 

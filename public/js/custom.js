@@ -2490,36 +2490,20 @@ if (typeof NProgress != 'undefined') {
 				console.log('init_DataTables');
 				
 				var handleDataTableButtons = function() {
+					var getUrl = window.location;
+					var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 				  if ($("#datatable-buttons").length) {
 					$("#datatable-buttons").DataTable({
-					  dom: "Blfrtip",
-					  buttons: [
-						{
-						  extend: "copy",
-						  className: "btn-sm"
-						},
-						{
-						  extend: "csv",
-						  className: "btn-sm"
-						},
-						{
-						  extend: "excel",
-						  className: "btn-sm"
-						},
-						{
-						  extend: "pdfHtml5",
-						  className: "btn-sm"
-						},
-						{
-						  extend: "print",
-						  className: "btn-sm"
-						},
-					  ],
+					  dom: '<B<"addpackage">><lf>rtip',
+					  buttons: ['excel', 'pdf', 'print'],
 					  responsive: true
 					});
+					$("div.addpackage").html('<a href="'+baseUrl+'/addpackage" type="button" class="btn btn-round btn-primary"><i class="fas fa-plus"></i> New Received Package</a>');
 				  }
 				};
 
+				
+				
 				TableManageButtons = function() {
 				  "use strict";
 				  return {
@@ -2557,6 +2541,7 @@ if (typeof NProgress != 'undefined') {
 					{ orderable: false, targets: [0] }
 				  ]
 				});
+
 				$datatable.on('draw.dt', function() {
 				  $('checkbox input').iCheck({
 					checkboxClass: 'icheckbox_flat-green'
@@ -5040,7 +5025,6 @@ if (typeof NProgress != 'undefined') {
 		init_CustomNotification();
 		init_autosize();
 		init_autocomplete();
-				
 	});	
 	
 
