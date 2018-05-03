@@ -1043,13 +1043,13 @@ h2 {
     font-size: 20px
 }
 .accordion .panel {
-    margin-bottom: 5px;
     border-radius: 0;
-    border-bottom: 1px solid #efefef;
+    border: 2px solid #dadada;
+    margin: 30px 10px 5px 10px;
 }
 .accordion .panel-heading {
-    background: #F2F5F7;
-    padding: 13px;
+    background: #dadada;
+    padding: 6px;
     width: 100%;
     display: block
 }
@@ -4167,6 +4167,18 @@ ul.notifications {
     border: 0px !important;
 }
 
+.dropzone .dz-preview .dz-image {
+    width: 160px !important;
+    height: 160px !important;
+}
+
+.dropzpne .dz-preview{
+    float: left !important;
+}
+
+.dzmsg {
+    display: inline;
+}
 .add-image {
     width: 20%;
     display: block;
@@ -4314,11 +4326,14 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
     background-color: #dadada;
     float: left;
     position: relative;
-    width: 20%;
-    padding-bottom: 20%;
+    width: 160px;
+    padding-bottom: 160px;
     margin: 1.66%;
     overflow: hidden;
+    border-radius: 20px;
+    cursor: pointer;
 }
+
 
 .pictureview {
     text-align: center;
@@ -4329,15 +4344,12 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
     overflow: hidden;
 }
 
-.pictureblock {
-    cursor: pointer;
-}
-
 .block-content {
     position: absolute;
     height: 100%;
     width: 100%;
     padding: 5%;
+    background-color: #dadada;
 }
 
 .table{
@@ -4351,7 +4363,7 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 }
 
 .table-cell i {
-    font-size: 300%;
+    font-size: 200%;
     margin-bottom: 3%; 
 }
 .panel-body {
@@ -4379,4 +4391,28 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 
 .addpackage {
     float: right;
+}
+
+body {
+  counter-reset: esum;
+}
+.esum {
+  position: relative;
+  counter-increment: esum;
+}
+.esum:before {
+  content: "#"counter(esum);
+}
+
+.remove-item {
+    position: relative;
+    font-size: 20px;
+}
+
+.addmore-btn {
+    width: 100%;
+}
+
+#more-package {
+    width: 100%;
 }

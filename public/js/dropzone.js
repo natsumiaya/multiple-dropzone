@@ -114,6 +114,7 @@
     Dropzone.prototype.events = ["drop", "dragstart", "dragend", "dragenter", "dragover", "dragleave", "addedfile", "addedfiles", "removedfile", "thumbnail", "error", "errormultiple", "processing", "processingmultiple", "uploadprogress", "totaluploadprogress", "sending", "sendingmultiple", "success", "successmultiple", "canceled", "canceledmultiple", "complete", "completemultiple", "reset", "maxfilesexceeded", "maxfilesreached", "queuecomplete"];
 
     Dropzone.prototype.defaultOptions = {
+      previewcounter: 0,
       url: null,
       method: "post",
       withCredentials: false,
@@ -255,7 +256,8 @@
         }
         if (this.previewsContainer) {
           file.previewElement = Dropzone.createElement(this.options.previewTemplate.trim());
-          $(file.previewElement).insertBefore($('.dz-default'));
+          $(file.previewElement).insertBefore($('#preview'+this.options.previewcounter));
+          // console.log($('#preview'+this.options.previewcounter));
           file.previewTemplate = file.previewElement;
           // this.previewsContainer.appendChild(file.previewElement);
           _ref = file.previewElement.querySelectorAll("[data-dz-name]");
