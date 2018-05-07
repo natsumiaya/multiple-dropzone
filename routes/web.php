@@ -15,3 +15,4 @@ Route::get('/', 'PackageController@packageList');
 
 Route::get('listpackage', 'PackageController@packageList');
 Route::get('addpackage', 'PackageController@packageForm');
+Route::post('sendData', 'PackageController@sendData');

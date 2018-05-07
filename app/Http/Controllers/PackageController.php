@@ -13,6 +13,10 @@ class PackageController extends Controller
 	public function packageList(){
 		return view('pages.packagelist');
 	}
+
+	private function sendData(){
+		
+	}
 }
 
 ?>

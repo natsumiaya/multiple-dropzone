@@ -4409,10 +4409,29 @@ body {
     font-size: 20px;
 }
 
+.remove-item:hover {
+    color: red;
+    cursor: pointer;
+}
+
+
 .addmore-btn {
     width: 100%;
 }
 
 #more-package {
     width: 100%;
+}
+
+select.parsley-error, input.parsley-error, textarea.parsley-error {
+    border: 1px solid red;
+}
+
+ul.parsley-errors-list{
+    font-size: 12px;
+    color: #D00;
+    padding-left: 0;
+    font-style: normal;
+    list-style-type: none;
+    margin-bottom: 0;
 }
